@@ -2,16 +2,19 @@
 function solution(N) {
   // the split() method splits a String object into an array of strings by separating the string into substrings, using a specified separator string to determine where to make each split
   let binary = parseInt(N).toString(2).split('1');
-  let binaryGap = 0
+  let binaryGap = 0;
 
-  for (let i = 0; i < binary.length; i++) {
-    if (binary[i].length > binaryGap && i !== binary.length - 1) {
+  for (let i = 0; i < binary.length - 1; i++) {
+    if (binary[i].length > binaryGap) {
       binaryGap = binary[i].length;
     }
   }
 
   return binaryGap;
 };
+
+console.assert(solution(1041) === 5, 'binary gap incorrect');
+console.assert(solution(6) === 0, 'binary gap incorrect');
 
 // A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.
 //
