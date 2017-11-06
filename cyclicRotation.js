@@ -13,14 +13,14 @@ function solution(A, K) {
   return A
 };
 
-let A = [
+let cyclicArray = [
     3, 8, 9, 7, 6
   ],
   K = 3
 
 // Javascript arrays are objects and you can't simply use the equality operator === to understand if the content of those objects is the same. The equality operator will only test if two object are actually exactly the same instance.
 // Utilizing loadash libray to perform a deep comparison between two values to determine if they are equivalent.
-console.assert(_.isEqual(solution(A, K), [9, 7, 6, 3, 8]), 'cyclic rotation incorrect');
+console.assert(_.isEqual(solution(cyclicArray, K), [9, 7, 6, 3, 8]), 'cyclic rotation incorrect');
 
 // A zero-indexed array A consisting of N integers is given. Rotation of the array means that each element is shifted right by one index, and the last element of the array is also moved to the first place.
 //

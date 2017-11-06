@@ -15,7 +15,7 @@ function solution(A) {
   return;
 };
 
-let array = [
+let oddArray = [
   9,
   3,
   9,
@@ -24,7 +24,7 @@ let array = [
   7,
   9
 ];
-console.assert(solution(array) === 7, 'odd occurrences in array incorrect')
+console.assert(solution(oddArray) === 7, 'odd occurrences in array incorrect')
 
 // A non-empty zero-indexed array A consisting of N integers is given. The array contains an odd number of elements, and each element of the array can be paired with another element that has the same value, except for one element that is left unpaired.
 //
