@@ -1,39 +1,28 @@
 function solution(A) {
   let len = A.length,
-    missingElem = 0,
+    int = 1,
     diff;
 
   if (len === 0) {
     return 1;
   }
 
-  // we can use sorting to solve it in lesser time complexity
   A.sort((a, b) => {
     return a - b;
   });
 
-  // let max = A.length + 1;
-
-  // for (let i = 1; i <= max; i++) {
-  //   if (A.indexOf(i) === -1) {
-  //     return i;
-  //   }
-  // }
-
-  for (var N = 0; N < len; N++) {
-    diff = A[N] - missingElem;
-    if (diff > 1) {
-      return missingElem + 1;
-    } else if (diff === 1) {
-      missingElem++;
+  for (let N = 0; N < len; N++) {
+    if(A[N] === int) {
+      int++
+    } else {
+      return int;
     }
   }
-  return missingElem + 1;
+  return int;
 }
 
-let elemArray = [2, 3, 1, 5];
-
-console.assert(solution(elemArray) === 4, 'perm missing elem is incorrect');
+console.assert(solution([2]) === 1, 'perm missing elem is incorrect');
+console.assert(solution([2,3,1,5]) === 4, 'perm missing elem is incorrect');
 
 // A zero-indexed array A consisting of N different integers is given.
 // The array contains integers in the range [1..(N + 1)], which means that exactly one element is missing.

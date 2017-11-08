@@ -1,3 +1,36 @@
+// A has at least one integer
+function solution(A) {
+  let int = 1;
+
+  if (Math.max(...A) < 1) {
+    return 1;
+  }
+
+  // return positive values
+  A = A.filter((a, index) => {
+    return a > 0
+  })
+
+  // grab unique values and sort
+  // the Set object lets you store unique values of any type, whether primitive values or object references
+  A = [...new Set(A)].sort((a, b) => {
+    return a - b;
+  });
+
+  for (let i = 0; i < A.length; i++) {
+    if (A[i] === int) {
+      int++
+    } else {
+      return int;
+    }
+  }
+  return int;
+}
+
+console.assert(solution([-1, -3]) === 1, 'missing integer is incorrect');
+console.assert(solution([1, 3, 6, 4, 1, 2]) === 5, 'missing integer is incorrect');
+console.assert(solution([1, 2, 3]) === 4, 'missing integer is incorrect');
+
 // This is a demo task.
 //
 // Write a function:

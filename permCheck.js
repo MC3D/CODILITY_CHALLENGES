@@ -1,3 +1,30 @@
+function solution(A) {
+  let len = A.length,
+    int = 1;
+
+  if (A.length !== [...new Set(A)].length) {
+    return 0;
+  }
+
+  A.sort((a, b) => {
+    return a - b;
+  })
+
+  for (let i = 0; i < len; i++) {
+    if (A[i] === int) {
+      int++
+    } else {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+console.assert(solution([4,1,3,2]) === 1,'perm check is incorrect');
+console.assert(solution([4,1,3,2,1]) === 0,'perm check is incorrect');
+console.assert(solution([4,1,3]) === 0,'perm check is incorrect');
+
+
 // A non-empty zero-indexed array A consisting of N integers is given.
 //
 // A permutation is a sequence containing each element from 1 to N once, and only once.
