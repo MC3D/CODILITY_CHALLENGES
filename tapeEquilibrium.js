@@ -1,78 +1,40 @@
-// 41%
+//
 function solution(A) {
   let len = A.length,
-    idx = 1,
-    lt,
-    rt,
-    abs;
+  head,
+  tail,
+  minDiff,
+  currDiff;
 
   if (len === 2) {
     return Math.abs(A[0] - A[1]);
   }
 
-  let sumLeft = (idx) => {
-    return A.slice(0, idx).reduce((a, b) => {
-      return a + b;
-    });
-  }
+  head = A[0];
+  tail = A.slice(1).reduce((a,b)=>{
+    return a + b;
+  });
 
-  let sumRight = (idx) => {
-    return A.slice(idx).reduce((a, b) => {
-      return a + b;
-    });
-  }
+  minDiff = Math.abs(head - tail);
+  currDiff = minDiff;
 
-  let sum = (idx) => {
-    return Math.abs(sumLeft(idx) - sumRight(idx));
-  }
-
-  while(idx < len - 1) {
-    if(sum(idx) <= sum(idx+1)) {
-      return sum(idx);
-    } else {
-      idx++
+  for (i = 1; i < len - 2; i++) {
+    head += A[i];
+    tail -= A[i];
+    currDiff = Math.abs(head - tail);
+    if(currDiff < minDiff){
+      minDiff = currDiff;
     }
   }
-  return sum(idx);
+  
+  return minDiff;
 }
 
-// review and learn
-
-// function solution(A) {
-//   var len = A.length;
-//   var head = A[0];
-//   var minDiff,
-//     currDiff,
-//     tail;
-//   if (len === 2) {
-//     return Math.abs(A[0] - A[1]);
-//   }
-//   tail = (function() {
-//     var sum = 0;
-//     for (i = 1; i < len; i++) {
-//       sum += A[i];
-//     }
-//     return sum;
-//   })();
-//
-//   minDiff = Math.abs(head - tail);
-//   currDiff = minDiff;
-//   for (i = 1; i < len - 2; i++) {
-//     head += A[i];
-//     tail -= A[i];
-//     currDiff = Math.abs(head - tail);
-//     if (currDiff < minDiff) {
-//       minDiff = currDiff;
-//     }
-//   }
-//   return minDiff;
-// }
-
-console.assert(solution([3, 1, 0, 1, 3]) === 0, 'tape equilibrium is incorrect');
-console.assert(solution([3, 1, 2, 4, 3]) === 1, 'tape equilibrium is incorrect');
-console.assert(solution([3, 1, 2, 4]) === 2, 'tape equilibrium is incorrect');
-console.assert(solution([3, 1]) === 2, 'tape equilibrium is incorrect');
-console.assert(solution([-2, 9, -1]) === 8, 'tape equilibrium is incorrect');
+// console.assert(solution([3, 1, 0, 1, 3]) === 0, 'tape equilibrium is incorrect');
+// console.assert(solution([3, 1, 2, 4, 3]) === 1, 'tape equilibrium is incorrect');
+// console.assert(solution([3, 1, 2, 4]) === 2, 'tape equilibrium is incorrect');
+// console.assert(solution([3, 1]) === 2, 'tape equilibrium is incorrect');
+// console.assert(solution([-2, 9, -1]) === 8, 'tape equilibrium is incorrect');
 
 // A non-empty zero-indexed array A consisting of N integers is given. Array A represents numbers on a tape.
 //
